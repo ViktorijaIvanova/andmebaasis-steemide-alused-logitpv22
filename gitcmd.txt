@@ -1,0 +1,14 @@
+cd desktop
+git config --global --list
+git config --global user.name "Viktorija Ivanova"
+git config --global user.email "vikomiller844@gmail.com"
+git clone https://github.com/ViktorijaIvanova/andmebaasis-steemide-alused-logitpv22.git
+cd andmebaasis-steemide-alused-logitpv22
+git status
+то что должно написаться после того как я написала git status
+On branch main
+Your branch is up to date with 'origin/main'.
+------------------------------------------------
+git add .
+git commit -a -m "põhi ..."
+git push 
