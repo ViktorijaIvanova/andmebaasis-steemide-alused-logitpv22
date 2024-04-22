@@ -62,6 +62,7 @@ insert into film (filmNimetus, kestvus, rezisoor, v_aasta) values ('One in a Mil
 insert into film (filmNimetus, kestvus, rezisoor, v_aasta) values ('Shorts', 220, 'Yolanthe Brisker', 2005);
 select * from film;
 
+--filmiNimetusi otsing esimeśe tähe järgi
 CREATE Procedure otsing1Taht
 @taht char(1)
 AS
@@ -71,3 +72,14 @@ Begin
 End;
 --käivitamine
 EXEC otsing1Taht 'A';
+
+--protseduur mis kustutab sisestatud id järgi
+CREATE procedure kustutaFilm
+@id int 
+AS 
+BEGIN
+SELECT * FROM film;
+DELETE FROM film WHERE filmID=@id;
+SELECT * FROM film;
+END;
+EXEC kustutaFilm 42;
