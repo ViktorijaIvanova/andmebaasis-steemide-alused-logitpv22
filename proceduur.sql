@@ -61,3 +61,13 @@ insert into film (filmNimetus, kestvus, rezisoor, v_aasta) values ('50 Worst Mov
 insert into film (filmNimetus, kestvus, rezisoor, v_aasta) values ('One in a Million: The Ron LeFlore Story', 285, 'Lindie McRorie', 2006);
 insert into film (filmNimetus, kestvus, rezisoor, v_aasta) values ('Shorts', 220, 'Yolanthe Brisker', 2005);
 select * from film;
+
+CREATE Procedure otsing1Taht
+@taht char(1)
+AS
+Begin 
+	SELECT * from film
+	WHERE filmNimetus LIKE  CONCAT(@taht,'%');
+End;
+--käivitamine
+EXEC otsing1Taht 'A';
