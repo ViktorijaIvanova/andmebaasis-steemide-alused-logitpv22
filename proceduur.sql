@@ -83,3 +83,9 @@ DELETE FROM film WHERE filmID=@id;
 SELECT * FROM film;
 END;
 EXEC kustutaFilm 42;
+
+--proceduur, mis loeb filmide arv kokku
+CREATE procedure FilmdeArv
+AS
+SELECT COUNT(*) AS 'filmide Arv' FROM film;
+EXEC FilmdeArv;
