@@ -102,3 +102,16 @@ insert into film (filmNimetus, kestvus, rezisoor, v_aasta) values (@uusfilm, @ke
 SELECT * FROM film;
 END;
 EXEC lisaFilm 'Test', 222, 'Test', 2000;
+
+--procedur, mis uuendab rezisööri andmed filmNimi järgi
+CREATE procedure uuendaRezisorFilmis
+@uusrezisoor varchar(50),
+@filmNimetus varchar(50)
+AS 
+BEGIN
+Select * from film;
+UPDATE film SET rezisoor=@uusrezisoor
+WHERE filmNimetus=@filmNimetus
+Select * from film;
+END;
+EXEC uuendaRezisorFilmis 'Oskar Luts', 'Test';
