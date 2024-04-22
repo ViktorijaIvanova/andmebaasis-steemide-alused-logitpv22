@@ -115,3 +115,60 @@ WHERE filmNimetus=@filmNimetus
 Select * from film;
 END;
 EXEC uuendaRezisorFilmis 'Oskar Luts', 'Test';
+CREATE TABLE lennupiletid(
+piletID int PRIMARY KEY identity(1,1),
+pilethind int,
+sihtkoht varchar(30),
+lähtekoht varchar (30));
+Select * from lennupiletid;
+insert into lennupiletid (pilethind, sihtkoht, lähtekoht) values (80, 'Riga', 'Moscow');
+insert into lennupiletid (pilethind, sihtkoht, lähtekoht) values (101, 'Changshan', 'Kisarazu');
+insert into lennupiletid (pilethind, sihtkoht, lähtekoht) values (219, 'Likasi', 'Wobulenzi');
+insert into lennupiletid (pilethind, sihtkoht, lähtekoht) values (113, 'Pau', 'Tysmenytsya');
+insert into lennupiletid (pilethind, sihtkoht, lähtekoht) values (177, 'Jingyang', 'Ilopango');
+insert into lennupiletid (pilethind, sihtkoht, lähtekoht) values (474, 'Jatiraya', 'Merrifield');
+insert into lennupiletid (pilethind, sihtkoht, lähtekoht) values (224, 'Ińsko', 'Perpignan');
+insert into lennupiletid (pilethind, sihtkoht, lähtekoht) values (240, 'Niedrzwica Duża', 'Konëvo');
+insert into lennupiletid (pilethind, sihtkoht, lähtekoht) values (331, 'Khelyulya', 'Yelabuga');
+insert into lennupiletid (pilethind, sihtkoht, lähtekoht) values (143, 'Gangbei', 'Studená');
+
+
+-- Protseduuri loomine, mis tagastab pileti hinna antud piletID järgi
+CREATE PROCEDURE otsingpileti
+    @pid int
+AS
+BEGIN
+    SET NOCOUNT ON;
+    SELECT pilethind
+    FROM lennupiletid
+    WHERE piletid = @pid;
+END;
+EXEC otsingpileti @pid = 2;
+
+
+CREATE PROCEDURE keskminehind
+AS
+BEGIN
+    SET NOCOUNT ON;
+    DECLARE @averagePrice DECIMAL(10,2);
+    -- Arvutame keskmise pileti hinna
+    SELECT @averagePrice = AVG(pilethind)
+    FROM lennupiletid;
+    -- Tagastame keskmise hinna
+    SELECT @averagePrice AS 'Keskmine pileti hind';
+END;
+EXEC keskminehind;
+
+--lisab uus suund
+CREATE PROCEDURE lisabussund
+    @pilethind INT,
+    @sihtkoht VARCHAR(30),
+    @lähtekoht VARCHAR(30)
+AS
+BEGIN
+    INSERT INTO lennupiletid (pilethind, sihtkoht, lähtekoht)
+    VALUES (@pilethind, @sihtkoht, @lähtekoht);
+END;
+
+EXEC lisabussund 150, 'Vilnius', 'Paris';
+
