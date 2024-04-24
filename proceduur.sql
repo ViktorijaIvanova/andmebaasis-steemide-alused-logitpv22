@@ -17,3 +17,10 @@ End;
 
 --protseduuri käivitamine
 CALL otsing1Taht ('F');
+
+--filmi kustutamone
+CREATE PROCEDURE `kustutaFilm`(IN `id` INT) NOT DETERMINISTIC CONTAINS SQL SQL SECURITY DEFINER 
+	BEGIN SELECT * FROM film; 
+DELETE FROM film WHERE filmID=id;
+SELECT * FROM film; 
+END; 
