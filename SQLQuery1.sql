@@ -148,11 +148,11 @@ select top 3 Age, Name from Person
 
 ---näitab esimesed 50% tabelis
 select top 50 percent * from Person
---?
+--order by cast- sorteerib päringutulemusi
 select * from Person order by cast(Age as int)
 select * from Person order by Age
 
---?
+--arvutab tabeli kõigi kirjete vanuste summa
 select sum(cast(Age as int)) from Person
 
 --- kuvab kõige nooremat isikut
