@@ -133,7 +133,7 @@ select * from Person where Email not like '%@%'
 -- ainult üks täht
 select * from Person where Email like '_@_.com'
 
---?
+--like '[^WAS]%' tähendab, et otsime veerust Name ridu, mis algavad mis tahes tähega peale W, A ja S.
 select * from Person where Name like '[^WAS]%'
 --- ?
 select * from Person where (City = 'Gotham' or City = 'New York')
