@@ -271,8 +271,9 @@ where Id = 10
 
 
 --- igast reast võtab esimeses veerus täidetud lahtri ja kuvab ainult seda
-select Id, coalesce(FirstName, MiddleName, LastName) as Name
+select Id, coalesce(Name, MiddleName, LastName) as Name
 from Employees
+--siin kirjutame ka lihtsalt name
 
 select * from Employees
 select * from Department
