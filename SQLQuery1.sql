@@ -237,6 +237,7 @@ add City nvarchar(25)
 alter table Employees
 add DepartmentId
 int null
+--siin on viga, kuna veerg departmentId on juba olemas
 
 
 --?
