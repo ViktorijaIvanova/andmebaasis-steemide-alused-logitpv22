@@ -97,7 +97,7 @@ insert into Person (Id, Name, Email, GenderId, Age)
 values (9, 'Test', 'Test', 2, 16)
 --siin oli viga, kirjas oli 160 ja vanus ei tohi olla suurem kui 150
 
---?
+--go- Saadab käsu kõigi eelnevate SQL-lausete täitmiseks
 select * from Person
 go
 delete from Person where Id = 8
