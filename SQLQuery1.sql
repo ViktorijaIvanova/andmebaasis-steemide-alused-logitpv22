@@ -135,7 +135,7 @@ select * from Person where Email like '_@_.com'
 
 --like '[^WAS]%' tähendab, et otsime veerust Name ridu, mis algavad mis tahes tähega peale W, A ja S.
 select * from Person where Name like '[^WAS]%'
---- ?
+---Select * from Person where (City = 'Gotham' või City = 'New York') ja Age >= 40 päring tagastab kõik tabelist Isik olevad read, kus on järgmised tingimused:Veeru City väärtus on kas „Gotham” või „New York” ja veeru Vanus väärtus on suurem kui 40 või sellega võrdne.
 select * from Person where (City = 'Gotham' or City = 'New York')
 and Age >= 40
 
