@@ -224,7 +224,7 @@ select * from Employees
 ---Iga tulemuse rida sisaldab unikaalset Name ja DepartmentId v‰‰rtuste paari.
 select distinct Name, DepartmentId from Employees
 
----?
+---arvutab palgav‰‰rtuste summa
 select sum(cast(Salary as int)) from Employees
 ---?
 select min(cast(Salary as int)) from Employees
