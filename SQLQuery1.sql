@@ -17,6 +17,8 @@ Id int NOT NULL primary key,
 Gender nvarchar(10) not null
 )
 --loomine tabeli Gender
+Select * from Gender;
+--kirjutame select ja vaata tabeli
 
 create table Person
 (
