@@ -354,11 +354,11 @@ declare @Name nvarchar(50)
 execute spGetNameById1 6, @Name output
 print 'Name of the employee = ' + @Name
 
---?
+--Kui tabelis Töötajad on meie poolt säilitatud identifikaatoriga töötaja, siis saadakse tulemuseks töötaja nimi ja kui sellist numbrit pole, siis väljastatakse see NULL
 create proc spGetNameById2
 @Id int
 as begin
-	return (select FirstName from Employees where Id = @Id)
+	return (select Name from Employees where Id = @Id)
 end
 
 -- ?
