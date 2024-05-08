@@ -240,7 +240,7 @@ int null
 --siin on viga, kuna veerg departmentId on juba olemas
 
 
---?
+--lisab tabelisse Töötajad uue veeru MiddleName, mis salvestab stringiväärtusi maksimaalse pikkusega 30 tähemärki.
 alter table Employees
 add MiddleName nvarchar(30)
 
