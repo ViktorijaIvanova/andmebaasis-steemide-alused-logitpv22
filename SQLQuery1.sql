@@ -34,9 +34,11 @@ values (1, 'Female')
 insert into Gender (Id, Gender)
 values (2, 'Male')
 --lisage tabelisse veerud
---- ?
+
+--add constraint-lisab tabeli loomisel piirangu,siin on näiteks väljal piirang id
 alter table Person add constraint tblPerson_GenderId_FK
 foreign key (GenderId) references Gender(Id)
+
 
 -- sisestame andmed
 insert into Person (Id, Name, Email, GenderId)
