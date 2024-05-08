@@ -221,7 +221,7 @@ values (10, 'Russell', 'Male', 8800, NULL)
 
 select * from Employees
 
----?
+---Iga tulemuse rida sisaldab unikaalset Name ja DepartmentId v‰‰rtuste paari.
 select distinct Name, DepartmentId from Employees
 
 ---?
