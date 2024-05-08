@@ -168,7 +168,7 @@ select City, sum(cast(Age as int)) as TotalAge from Person group by City
 
 --- tund 3
 
---- loome uued tabelid
+---loome uued tabelid
 create table Department
 (
 Id int primary key,
@@ -186,7 +186,7 @@ Salary nvarchar(50),
 DepartmentId int
 )
 
---?
+--andmete lisamine tabelisse
 insert into Department (Id, DepartmentName, Location, DepartmentHead)
 values (1, 'IT', 'London', 'Rick')
 insert into Department (Id, DepartmentName, Location, DepartmentHead)
