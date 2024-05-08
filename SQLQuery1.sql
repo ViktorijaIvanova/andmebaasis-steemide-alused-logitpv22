@@ -226,7 +226,7 @@ select distinct Name, DepartmentId from Employees
 
 ---arvutab palgav‰‰rtuste summa
 select sum(cast(Salary as int)) from Employees
----?
+---arvutab miinimumpalga v‰‰rtuse kıigi tabeli kannete hulgast Employees
 select min(cast(Salary as int)) from Employees
 
 
