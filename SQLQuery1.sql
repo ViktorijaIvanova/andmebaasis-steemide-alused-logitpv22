@@ -285,19 +285,19 @@ select * from Department
 --- loome stored procedure, mis kuvab vaate
 create procedure spGetEmployees
 as begin
-	select FirstName, Gender from Employees
+	select Name, Gender from Employees
 end
 
 spGetEmployees
 exec spGetEmployees
 execute spGetEmployees
 
---- 
+--- protseduur võtab kaks parameetrit ja tagastab nimekirja töötajatest, kelle määratud sugu ja osakonna identifikaator ühtivad läbitud parameetri väärtustega.
 create proc spGetEmployeesByGenderAndDepartment
 @Gender nvarchar(20),
 @DepartmentId int
 as begin
-	select FirstName, Gender, DepartmentId from Employees where Gender = @Gender
+	select Name, Gender, DepartmentId from Employees where Gender = @Gender
 	and DepartmentId = @DepartmentId
 end
 
