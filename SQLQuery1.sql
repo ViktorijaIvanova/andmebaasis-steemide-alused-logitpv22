@@ -7,8 +7,10 @@
 create database LOGITpv22
 
 
-
---?
+--git add .
+--git commit -a -m "db loomine"
+use LOGITpv22;
+--minge sellesse andmebaasi
 create table Gender
 (
 Id int NOT NULL primary key,
