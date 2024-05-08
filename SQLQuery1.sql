@@ -89,12 +89,13 @@ update Person
 set Age = 149
 where Id = 8
 
---add constraint __ check-kontrollib, kas kirjed töötavad uue piirangu lisamisel
+--add constraint __ check- kontrollib, kas kirjed töötavad uue piirangu lisamisel
 alter table Person
 add constraint CK_Person_Age check (Age > 0 and Age < 150)
 
 insert into Person (Id, Name, Email, GenderId, Age)
-values (9, 'Test', 'Test', 2, 160)
+values (9, 'Test', 'Test', 2, 16)
+--siin oli viga, kirjas oli 160 ja vanus ei tohi olla suurem kui 150
 
 --?
 select * from Person
