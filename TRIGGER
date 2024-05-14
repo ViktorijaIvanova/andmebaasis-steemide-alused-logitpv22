@@ -1,0 +1,81 @@
+--trigerid
+--teeme 2 tabelit
+--1.tabel -linnad ja tabel täidab sekretär
+--2.tabel -logi, mis näitab kuidas sekretär täidab 1.tabel
+--TÄHTIS! et logi täidab triger!
+CREATE database trigerTIT;
+use trigerTIT;
+
+Create table linnad(
+linnID int  PRIMARY KEY identity(1,1),
+linnanimi varchar(15),
+rahvaarv int);
+
+Create table logi(
+id int  PRIMARY KEY identity(1,1),
+aeg DATETIME,
+toiming  varchar(100),
+andmed TEXT,
+kasutaja varchar(100)
+);
+INSERT INTO linnad(linnanimi, rahvaarv)
+values('Narva', 100000);
+select * from linnad;
+--Triger -INSERT -triger mis jälgib linnade sisestamine tabelis linnad
+CREATE TRIGGER linnaLisamine
+ON linnad
+FOR INSERT
+AS
+BEGIN
+	INSERT INTO logi(kasutaja,aeg,toiming,andmed)
+	SELECT USER,
+			GETDATE(),
+			'linn on lisatud',
+			inserted.linnanimi
+	FROM inserted;
+END
+
+--kontroll
+INSERT INTO linnad(linnanimi, rahvaarv)
+values('Paide', 322455);
+SELECT * FROM linnad;
+SELECT * FROM logi;
+--DELETE TRIGER -triger mis täidab logi tabeli kui linn on kustutatud tabelis
+
+CREATE TRIGGER linnaKustutamine
+ON linnad
+FOR DELETE
+AS
+BEGIN
+	INSERT INTO logi(kasutaja,aeg,toiming,andmed)
+	SELECT USER,
+			GETDATE(),
+			'linn on kustutatud',
+			deleted.linnanimi
+	FROM deleted;
+END;
+DROP TRIGGER linnaKustutamine;
+DELETE FROM linnad
+WHERE linnID=3;
+SELECT * FROM linnad;
+SELECT * FROM logi;
+
+
+CREATE TRIGGER linnauuendamine
+ON linnad
+FOR UPDATE
+AS
+BEGIN
+	INSERT INTO logi(kasutaja,aeg,toiming,andmed)
+	SELECT USER,
+			GETDATE(),
+			'linn on uuendatud',
+			CONCAT('vanad: ', deleted.linnanimi,
+			' uued: ', inserted.linnanimi)
+	FROM deleted INNER JOIN inserted
+	ON deleted.linnID=inserted.linnID;
+END;
+UPDATE linnad SET linnanimi='Tallinn2'
+WHERE linnID=1;
+SELECT * FROM linnad;
+SELECT * FROM logi;
