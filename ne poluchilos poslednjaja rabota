@@ -1,0 +1,69 @@
+CREATE DATABASE pood;
+Use pood;
+CREATE TABLE Klient(
+id  int primary key identity (1,1),
+eesnimi varchar(50),
+perenimi varchar(50)
+);
+CREATE TABLE toode(
+id  int primary key identity (1,1),
+tootenimi varchar(100),
+ühikuhind int,
+ükik varchar(2),
+);
+CREATE TABLE Ost(
+id  int primary key identity (1,1)
+
+);
+ALTER TABLE Ost ADD kliendiId int;
+Update Ost SET kliendiId=1;
+
+ALTER TABLE Ost
+ADD FOREIGN KEY (KliendiId) REFERENCES Ost(KliendiId);
+select * from Ost;
+INSERT INTO Ost(KliendiId)
+VALUES(4);
+select * from Klient;
+
+ALTER TABLE Ost ADD tooleId int;
+Update Ost SET tooleId=1;
+
+ALTER TABLE Ost
+ADD FOREIGN KEY (tooleId) REFERENCES Ost(tooleId);
+
+
+Create table logi(
+id int  PRIMARY KEY identity(1,1),
+kuupaev DATETIME,
+andmed TEXT,
+kasutaja varchar(100)
+);
+
+
+CREATE TRIGGER ostuuendamine
+ON ost
+FOR UPDATE
+AS
+BEGIN
+	INSERT INTO logi(kasutaja,kuupaev,andmed)
+	SELECT USER,
+			GETDATE(),
+			'ost on uuendatud',
+			CONCAT('vanad: ', deleted.id,
+			' uued: ', inserted.id)
+	FROM deleted INNER JOIN inserted
+	ON deleted.id=inserted.id;
+END;
+
+CREATE TRIGGER OstLisamine
+ON Ost
+FOR INSERT
+AS
+BEGIN
+	INSERT INTO logi(kasutaja,kuupaev,andmed)
+	SELECT USER,
+			GETDATE(),
+			'Ost on lisatud',
+			inserted.id
+	FROM inserted;
+END
