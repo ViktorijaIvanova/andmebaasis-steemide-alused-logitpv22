@@ -15,6 +15,7 @@ CREATE TABLE Ost(
 id  int primary key identity (1,1)
 
 );
+select * from Ost;
 ALTER TABLE Ost ADD kliendiId int;
 Update Ost SET kliendiId=1;
 
@@ -49,10 +50,10 @@ BEGIN
 	SELECT USER,
 			GETDATE(),
 			'ost on uuendatud',
-			CONCAT('vanad: ', deleted.id,
-			' uued: ', inserted.id)
+			CONCAT('vanad: ', deleted.kliendiId,
+			' uued: ', inserted.kliendiId)
 	FROM deleted INNER JOIN inserted
-	ON deleted.id=inserted.id;
+	ON deleted.kliendiId=inserted.kliendiId;
 END;
 
 CREATE TRIGGER OstLisamine
@@ -63,7 +64,9 @@ BEGIN
 	INSERT INTO logi(kasutaja,kuupaev,andmed)
 	SELECT USER,
 			GETDATE(),
-			'Ost on lisatud',
-			inserted.id
+			CONCAT('Ost on lisatud',
+			inserted.kliendiId, ' ', inserted.tooleId)
 	FROM inserted;
 END
+
+
