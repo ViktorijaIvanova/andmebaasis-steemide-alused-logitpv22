@@ -41,13 +41,13 @@ kasutaja varchar(100)
 );
 
 
-CREATE TRIGGER ostuuendamine
-ON ost
+CREATE TRIGGER Ostuuendamine
+ON Ost
 FOR UPDATE
 AS
 BEGIN
-	INSERT INTO logi(kasutaja,kuupaev,andmed)
-	SELECT USER,
+INSERT INTO logi(kasutaja,kuupaev,andmed)
+SELECT USER,
 			GETDATE(),
 			'ost on uuendatud',
 			CONCAT('vanad: ', deleted.kliendiId,
@@ -68,5 +68,9 @@ BEGIN
 			inserted.kliendiId, ' ', inserted.tooleId)
 	FROM inserted;
 END
+select * from logi;
 
-
+INSERT INTO Ost (kliendiId, tooleId)
+values(1, 2);
+SELECT * FROM Ost;
+SELECT * FROM logi;
