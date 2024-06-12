@@ -1,0 +1,48 @@
+CREATE DATABASE poodi;
+Use poodi;
+CREATE TABLE klient(
+id  int primary key identity (1,1),
+eesnimi varchar(50),
+perenimi varchar(50)
+);
+CREATE TABLE toode(
+id  int primary key identity (1,1),
+tootenimi varchar(100),
+ühikuhind int,
+ükik varchar(2),
+);
+
+
+CREATE TABLE ost (
+id  int primary key identity (1,1),
+klient_id INT,
+toote_id INT,
+FOREIGN KEY (id) REFERENCES klient(id),
+FOREIGN KEY (id) REFERENCES toode(id)
+);
+
+INSERT INTO klient (eesnimi, perenimi) VALUES ('John', 'Doe');
+INSERT INTO klient (eesnimi, perenimi) VALUES ('Jane', 'Smith');
+INSERT INTO klient (eesnimi, perenimi) VALUES ('Alice', 'Johnson');
+INSERT INTO klient (eesnimi, perenimi)VALUES ('Bob', 'Brown');
+
+INSERT INTO toode (tootenimi, ühikuhind,ükik) VALUES ('juust', 2, 34);
+INSERT INTO toode (tootenimi, ühikuhind,ükik) VALUES ('vorst', 1, 50);
+INSERT INTO toode (tootenimi, ühikuhind,ükik) VALUES ('kommid', 5, 10);
+INSERT INTO toode (tootenimi, ühikuhind,ükik) VALUES ('piir', 3, 60);
+
+select * from Ost;
+select * from klient;
+select * from toode;
+
+INSERT INTO Ost (klient_id, toote_id) VALUES (1, 4);
+INSERT INTO Ost (klient_id, toote_id) VALUES (2, 3);
+INSERT INTO Ost (klient_id, toote_id) VALUES (1, 2);
+INSERT INTO Ost (klient_id, toote_id) VALUES (4, 4);
+
+CREATE TABLE logi (
+id  int primary key identity (1,1),
+kasutaja varchar (100),
+kuupaev DATETIME,
+andmed TEXT
+);
