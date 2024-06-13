@@ -46,3 +46,39 @@ kasutaja varchar (100),
 kuupaev DATETIME,
 andmed TEXT
 );
+
+CREATE TRIGGER ostLisamine
+ON ost
+FOR INSERT
+AS
+BEGIN
+	INSERT INTO logi(kasutaja,kuupaev,andmed)
+	SELECT USER,
+			GETDATE(),
+			concat('ost on lisatud',
+			inserted.toote_id, inserted.klient_id)
+	FROM inserted;
+END;
+
+CREATE TRIGGER ostuuendamine
+ON ost
+FOR UPDATE
+AS
+BEGIN
+	INSERT INTO logi(kasutaja,kuupaev,andmed)
+	SELECT USER,
+			GETDATE(),
+			CONCAT ('ost on uuendatud','vanad: ', deleted.klient_id, deleted.toote_id,
+			' uued: ', klient.eesnimi, toode.tootenimi)
+	FROM deleted INNER JOIN inserted
+	ON deleted.klient_id=inserted.klient_id
+	inner join klient on klient.id=inserted.klient_id
+	inner join toode on toode.id=inserted.toote_id
+END;
+DROP trigger ostuuendamine
+select * from logi;
+
+UPDATE ost SET toote_id=4
+WHERE id=3;
+SELECT * FROM ost;
+SELECT * FROM logi;
